@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CI5105 – Programming 2 - Google Maps API</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+     /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 80%;
+  float: left;
+  width: 70%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#right-panel {
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#right-panel select,
+#right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+#right-panel {
+  margin: 20px;
+  border-width: 2px;
+  width: 20%;
+  height: 400px;
+  float: left;
+  text-align: left;
+  padding-top: 0;
+}
+
+#directions-panel {
+  margin-top: 10px;
+  background-color: #ffee77;
+  padding: 10px;
+  overflow: scroll;
+  height: 174px;
+}
+    </style>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+  <div id="controlsDiv">
+    CI5105 – Programming 2 - Google Maps API – By  Elbasyouny Omar
+    <br />
+    Just type on the Searchbox to select a city or location of your choice....
+    <hr>
+  <button onclick="RandomLocation()">Button1</button>
+  <button onclick="DrawCircles()">Button2</button>
+  <button onclick="drawCountry()">Button3</button>
+  <button onclick="RandomLocation1()">Button4</button>
+  <button onclick="drawShapes()">Button5</button>
+  <button onclick="ViewDirections()">Button6</button>
+  
+  <div id="newM"></div>
+  <input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
+  
+  
+  </div>
+    <div id="map"></div>
+    <div id="right-panel" style="display:none;">
+      <div>
+        <b>Start:</b>
+        <select id="start">
+        <option value=" Kingston upon Thames"> Kingston upon Thames</option>
+          <option value="East Molesey KT8 9AU, UK">Hampton Court Palace</option>
+          <option value="East Molesey KT8 9DA, UK">The Royal Paddocks</option>
+          <option value="Thames Ditton KT7 0RD, UK">Old Kingstonian Hockey Club</option>
+          <option value="London SW15 5PN, UK">Queen Mary`s Hospital</option>
+        </select>
+        <br />
+        <b>Waypoints:</b> <br />
+        <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
+        <select multiple id="waypoints">
+          
+          <option value="Kingston upon Thames, KT1 1DF">ALDI Supermarket</option>
+          <option value="Kingston upon Thames KT1 1LB, UK">Kingston Police Station</option>
+        </select>
+        <br />
+        <b>End:</b>
+        <select id="end">
+          <option value="Surbiton,UK">Surbiton</option>
+          <option value="Kingston upon Thames KT1 2EE, UK">Kingston University,London</option>
+          <option value="East Molesey, Surbiton KT6 4HN, UK">Ravens Ait Island</option>
+          <option value="East Molesey, Molesey, Kingston upon Thames KT1 4AD, UK">Hampton Court Model Yacht Club</option>
+          <option value="East Molesey, West Molesey KT8 1PG, UK">Molesey Hurst Recreation Ground</option>
+        </select>
+        <br />
+        <input type="submit" id="submit" />
+      </div>
+      <div id="directions-panel"></div>
+    </div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCM7-mNNkKXJRNK6arPrgB4cTfTWhZE1s&callback=initMap&libraries=geometry,drawing,places"
+      async
+    ></script>
+  </body>
+</html>
